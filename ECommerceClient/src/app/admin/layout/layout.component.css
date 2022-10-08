@@ -1,0 +1,10 @@
+.example-container {
+  width: 99%;
+  height: 90%;
+  margin: 10px;
+  border: 1px solid #555;
+}
+.sidebar-menu{
+  min-width: 200px;
+}
+

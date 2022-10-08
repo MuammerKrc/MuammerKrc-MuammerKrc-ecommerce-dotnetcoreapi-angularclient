@@ -1,3 +1,12 @@
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
-
+<mat-drawer-container class="example-container">
+  <mat-drawer class="sidebar-menu" mode="side" opened>
+    <h2 style="text-align: center;">Admin Menu</h2>
+    <ul>
+      <app-sidebar></app-sidebar>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+<app-footer></app-footer>
