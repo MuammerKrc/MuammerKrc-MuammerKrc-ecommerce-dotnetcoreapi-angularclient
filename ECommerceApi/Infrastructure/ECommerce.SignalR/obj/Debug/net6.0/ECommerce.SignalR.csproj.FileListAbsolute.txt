@@ -1,0 +1,17 @@
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.SignalR.deps.json
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.SignalR.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.SignalR.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.Application.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.Domain.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.Application.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\bin\Debug\net6.0\ECommerce.Domain.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.csproj.AssemblyReference.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.GeneratedMSBuildEditorConfig.editorconfig
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.AssemblyInfoInputs.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.AssemblyInfo.cs
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.csproj.CoreCompileInputs.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.csproj.CopyComplete
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\refint\ECommerce.SignalR.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ECommerce.SignalR.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.SignalR\obj\Debug\net6.0\ref\ECommerce.SignalR.dll

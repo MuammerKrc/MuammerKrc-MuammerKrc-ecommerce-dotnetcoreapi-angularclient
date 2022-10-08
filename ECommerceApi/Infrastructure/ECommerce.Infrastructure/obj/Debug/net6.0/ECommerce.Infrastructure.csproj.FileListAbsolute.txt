@@ -1,0 +1,17 @@
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Infrastructure.deps.json
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Infrastructure.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Infrastructure.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Application.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Domain.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Application.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\bin\Debug\net6.0\ECommerce.Domain.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.csproj.AssemblyReference.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.AssemblyInfoInputs.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.AssemblyInfo.cs
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.csproj.CoreCompileInputs.cache
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.csproj.CopyComplete
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\refint\ECommerce.Infrastructure.dll
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ECommerce.Infrastructure.pdb
+F:\ownerProject\ECommerce\ECommerceApi\Infrastructure\ECommerce.Infrastructure\obj\Debug\net6.0\ref\ECommerce.Infrastructure.dll
