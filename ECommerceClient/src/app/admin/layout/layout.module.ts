@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { ComponentModule } from './component/component.module';
 import { RouterModule } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ComponentModule,
     CommonModule,
     RouterModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   exports:[
     LayoutComponent
