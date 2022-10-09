@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -21,16 +21,25 @@ namespace ECommerce.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProduct()
         {
-            _productWriteRepository.AddRange(
-                new List<Product>()
-                {
-                    new(){ Name = "Product 1",Price = 100,Stock = 10},
-                    new(){ Name = "Product 2",Price = 150,Stock = 15},
-                    new(){ Name = "Product 3",Price = 200,Stock = 20},
-                    new(){ Name = "Product 4",Price = 150,Stock = 25},
-                });
+            return Ok(await _productReadRepository.GetAll());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(Product dto)
+        {
+            _productWriteRepository.Add(dto);
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            var model=await _productReadRepository.GetByIdAsync(id, true);
+            _productWriteRepository.Remove(model);
+            await _productWriteRepository.SaveAsync();
+            return Ok();
+        }
+
+
     }
 }
