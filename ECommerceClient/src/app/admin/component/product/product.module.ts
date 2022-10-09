@@ -10,6 +10,8 @@ import { ListComponent } from './list/list.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from 'src/app/directives/delete.directive';
+import { DialogModule } from '@angular/cdk/dialog';
+import { DialogsModule } from 'src/app/dialogs/dialogs.module';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { DeleteDirective } from 'src/app/directives/delete.directive';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DialogsModule
   ]
 })
 export class ProductModule { }

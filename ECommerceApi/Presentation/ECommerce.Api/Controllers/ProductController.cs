@@ -46,7 +46,7 @@ namespace ECommerce.Api.Controllers
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             var model = await _productReadRepository.GetByIdAsync(id, true);
