@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.Abstractions;
+using ECommerce.Application.Dtos.ProductDtos;
 using ECommerce.Application.Repositories.IProductRepositories;
 using ECommerce.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -25,9 +26,16 @@ namespace ECommerce.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(Product dto)
+        public async Task<IActionResult> CreateProduct(ProductCreateDto dto)
         {
-            _productWriteRepository.Add(dto);
+            if (!ModelState.IsValid)
+                return BadRequest(dto);
+            _productWriteRepository.Add(new Product()
+            {
+                Name = dto.Name,
+                Price = dto.Price,
+                Stock = dto.Stock
+            });
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
@@ -39,7 +47,5 @@ namespace ECommerce.Api.Controllers
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
-
-
     }
 }

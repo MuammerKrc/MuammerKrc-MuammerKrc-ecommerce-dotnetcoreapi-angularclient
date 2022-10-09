@@ -1,4 +1,7 @@
+using ECommerce.Application.Validators.Products;
+using ECommerce.Infrastructure.CustomControllerFilters;
 using ECommerce.Persistence;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,11 @@ builder.Services.AddCors(opt =>
             .AllowCredentials();
     });
 });
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt => opt.Filters.Add<CustomValidatorFilter>()).AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<ProductCreateValidator>()).ConfigureApiBehaviorOptions(
+    opt =>
+    {
+        opt.SuppressModelStateInvalidFilter = true;
+    });
 
 builder.Services.AddPersistenceServiceRegistration();
 

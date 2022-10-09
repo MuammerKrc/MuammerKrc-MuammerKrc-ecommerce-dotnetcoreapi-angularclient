@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9tE/NicDLc0SOQ1GESnOOGlz2FmYBQorhg/8k6GIjFbUv71ZH+VfzwcV/lbVg1Gb8enJ8kN+4Fj8x1neem6sfw==",
+  "dgSpecHash": "1La4BDtfRVJAKBxKXV+7KcWDFEEsw7d9oDaS6AVyiLsoNoEf5PFCeKlKNdyW9qLROsfB0b0KXeSvbZEZ5H4XGQ==",
   "success": true,
   "projectFilePath": "F:\\ownerProject\\ECommerce\\ECommerceApi\\Core\\ECommerce.Application\\ECommerce.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
+    "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.2\\fluentvalidation.dependencyinjectionextensions.11.2.2.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.9\\microsoft.aspnetcore.cryptography.internal.6.0.9.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.9\\microsoft.aspnetcore.cryptography.keyderivation.6.0.9.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.9\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.9.nupkg.sha512",
