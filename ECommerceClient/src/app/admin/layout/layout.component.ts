@@ -8,10 +8,9 @@ import { CustomToastrService, ToastrOptions } from 'src/app/services/common/cust
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private alertify:AlertifyService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.alertify.message('merhaba',new AlertifyOptions());
   }
 }
 

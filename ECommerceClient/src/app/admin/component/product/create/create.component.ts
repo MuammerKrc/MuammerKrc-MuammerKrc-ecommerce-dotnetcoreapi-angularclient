@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/baseComponents/base.component';
 import { Product } from 'src/app/models/product';
-import { AlertifyService, MessageType, Position } from 'src/app/services/common/alertify.service';
+import { AlertifyOptions, AlertifyService, MessageType, Position } from 'src/app/services/common/alertify.service';
 import { ProductService } from 'src/app/services/httpServices/product.service';
 
 @Component({
@@ -34,16 +34,12 @@ export class CreateComponent  extends BaseComponent implements OnInit {
       console.log(val);
       this.hideSpinner(SpinnerType.BallScaleMultiple)
       // this.createdProdut.emit();
-      this.alertifyService.message("Başarılı", {
-        dismissOthers: true,
-        messageType: MessageType.Success,
-        position: Position.TopRight
-      });
+      this.alertifyService.message("Ürün Kaydetme Başarılı",new AlertifyOptions);
     }, (err: string) => {
       this.hideSpinner(SpinnerType.BallScaleMultiple)
       this.alertifyService.message(err, {
         dismissOthers: true,
-        messageType: MessageType.Success,
+        messageType: MessageType.Error,
         position: Position.TopRight
       })
     });

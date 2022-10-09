@@ -4,6 +4,7 @@ using ECommerce.Application.Repositories.IProductRepositories;
 using ECommerce.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Api.Controllers
 {
@@ -20,9 +21,15 @@ namespace ECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProduct()
+        public async Task<IActionResult> GetProduct(int page = 0, int size = 10)
         {
-            return Ok(await _productReadRepository.GetAll());
+            var response = await _productReadRepository.GetWhere(i => true).Skip(page * size).Take(size).ToListAsync();
+            var totalCount = _productReadRepository.GetWhere(i => true).Count();
+            return Ok(new ProductPageListResultDto()
+            {
+                Result = response,
+                TotalCount = totalCount
+            });
         }
 
         [HttpPost]
@@ -42,7 +49,7 @@ namespace ECommerce.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
-            var model=await _productReadRepository.GetByIdAsync(id, true);
+            var model = await _productReadRepository.GetByIdAsync(id, true);
             _productWriteRepository.Remove(model);
             await _productWriteRepository.SaveAsync();
             return Ok();

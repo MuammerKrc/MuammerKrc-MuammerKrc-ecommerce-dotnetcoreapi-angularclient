@@ -10,8 +10,7 @@ import { HttpClientBaseService } from '../baseHtpp/http-client-base.service';
 export class ProductService {
 
   constructor(private _httpClient:HttpClientBaseService) { }
-
-  create(product: Product, successCallback?: Function, errorCallback?: Function) {
+  async create(product: Product, successCallback?: Function, errorCallback?: Function) {
     this._httpClient.post<Product>(
       {
         controller: "product",
@@ -23,6 +22,7 @@ export class ProductService {
         const _error: Array<{ key: string, value: Array<string> }> = err.error;
         let message = "";
         _error.forEach((data, index) => {
+          message +=data.key+"= <br>";
           data.value.forEach((_v, index) => {
             message += `${_v}<br>`
           })
@@ -32,7 +32,7 @@ export class ProductService {
   }
   async get(page:number,size:number,successCallback?: () => void, errorCallback?: (res: string) => void): Promise<ProductList> {
     var subsc = this._httpClient.get<ProductList>({
-      controller: "products",
+      controller: "product",
       queryString:`page=${page}&&size=${size}`
     }).toPromise();
     subsc.then(i => {
