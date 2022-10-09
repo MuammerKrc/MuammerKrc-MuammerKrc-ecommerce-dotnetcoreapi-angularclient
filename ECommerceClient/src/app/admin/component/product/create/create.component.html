@@ -1,0 +1,18 @@
+<h2 style="text-align: center;">Create Product</h2>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Name</mat-label>
+  <input matInput placeholder="Ex. Name" value="Sushi" #txtName>
+</mat-form-field>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Stock</mat-label>
+  <input matInput placeholder="Ex. Stock" type="number" #txtStock>
+</mat-form-field>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Price</mat-label>
+  <input matInput placeholder="Ex. Pizza" type="number" #txtPrice>
+</mat-form-field>
+<div style="display: flex; justify-content:center;">
+  <button type="submit" mat-raised-button color="primary" (click)="create($event, txtName,txtStock,txtPrice)">Create
+    Product</button>
+</div>
+<!-- <app-file [fileOptions]="fileOption"></app-file> -->

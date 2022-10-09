@@ -11,7 +11,7 @@ declare var $:any;
 export class AppComponent   {
     constructor(private toast:CustomToastrService)
   {
-    toast.message('merhaba',"Slm", new ToastrOptions());
+    // toast.message('merhaba',"Slm", new ToastrOptions());
   }
   title = 'ECommerceClient';
 }

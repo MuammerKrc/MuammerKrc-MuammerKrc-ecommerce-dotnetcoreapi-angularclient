@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgxSpinnerModule,
     HttpClientModule
   ],
-  providers: [{provide:"baseUrl",useValue:"https://localhost:7131/api",multi:true}],
+  providers: [{provide:"baseUrl",useValue:"https://localhost:7045/api",multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
