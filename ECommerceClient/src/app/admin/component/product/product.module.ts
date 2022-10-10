@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from 'src/app/directives/delete.directive';
 import { DialogModule } from '@angular/cdk/dialog';
 import { DialogsModule } from 'src/app/dialogs/dialogs.module';
+import { FileUploadModule } from 'src/app/services/file-upload/file-upload.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DialogsModule } from 'src/app/dialogs/dialogs.module';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    DialogsModule
+    DialogsModule,
+    FileUploadModule
   ]
 })
 export class ProductModule { }

@@ -8,7 +8,6 @@ import { UiModule } from './ui/ui.module';
 import { ToastrModule } from 'ngx-toastr';
 import {  NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
-import { DeleteDirective } from './directives/delete.directive';
 
 @NgModule({
   declarations: [
