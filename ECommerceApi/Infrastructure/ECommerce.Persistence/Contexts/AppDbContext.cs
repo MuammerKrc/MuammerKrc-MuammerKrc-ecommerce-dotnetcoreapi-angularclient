@@ -14,6 +14,8 @@ namespace ECommerce.Persistence.Contexts
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Order { get; set; }
+
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
 

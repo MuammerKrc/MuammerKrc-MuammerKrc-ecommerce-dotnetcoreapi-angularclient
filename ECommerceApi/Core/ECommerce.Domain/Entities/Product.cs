@@ -13,5 +13,6 @@ namespace ECommerce.Domain.Entities
         public int Stock { get; set; }
         public float Price { get; set; }
         public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public ICollection<ProductImageFile> ProductImageFiles { get; set; } = new List<ProductImageFile>();
     }
 }
