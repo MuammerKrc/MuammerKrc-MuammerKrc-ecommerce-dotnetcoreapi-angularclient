@@ -1,12 +1,13 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+// import { MatDialog } from '@angular/material/dialog';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
 import { FileDialogComponent, FileUploadDialogEnum } from 'src/app/dialogs/file-dialog/file-dialog.component';
 import { HttpClientBaseService } from '../baseHtpp/http-client-base.service';
 import { AlertifyOptions, AlertifyService, MessageType } from '../common/alertify.service';
 import { CustomToastrService, ToastrMessageType, ToastrOptions } from '../common/custom-toastr.service';
+import { DialogOptions, DialogService } from '../common/dialog.service';
 
 export class FileUploadOptions {
   controller?: string;
@@ -28,29 +29,36 @@ export class FileUploadComponent {
     private toastService: CustomToastrService,
     private alertifyService: AlertifyService,
     private httpclient: HttpClientBaseService,
-    public dialog: MatDialog,
+    // public dialog: MatDialog,
+    private dialogService:DialogService
     ) { }
   public files: NgxFileDropEntry[] = [];
   @Input() fileOptions: Partial<FileUploadOptions>;
 
   selectedFiles(files: NgxFileDropEntry[]) {
     this.files = files;
-    this.openDialog(()=>{
-      this.upload()
-    });
+    this.dialogService.openDialog({
+      afterClosed:()=>{this.upload()},
+      componentType:FileDialogComponent,
+      data:FileUploadDialogEnum.Yes,
+      options:new DialogOptions
+    })
+    // this.openDialog(()=>{
+    //   this.upload()
+    // });
   }
-  openDialog(callbackWhenClose:Function){
-    const dialogRef = this.dialog.open(FileDialogComponent, {
-      width: '500px',
-      data: FileUploadDialogEnum.Yes,
-    });
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result==FileUploadDialogEnum.Yes)
-        callbackWhenClose();
-      else
-        this.files=[];
-    });
-  }
+  // openDialog(callbackWhenClose:Function){
+  //   const dialogRef = this.dialog.open(FileDialogComponent, {
+  //     width: '500px',
+  //     data: FileUploadDialogEnum.Yes,
+  //   });
+  //   dialogRef.afterClosed().subscribe(result=>{
+  //     if(result==FileUploadDialogEnum.Yes)
+  //       callbackWhenClose();
+  //     else
+  //       this.files=[];
+  //   });
+  // }
 
   upload() {
     const formData = new FormData();

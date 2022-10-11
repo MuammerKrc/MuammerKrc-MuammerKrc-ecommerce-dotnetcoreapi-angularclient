@@ -30,7 +30,6 @@ import { FileUploadModule } from 'src/app/services/file-upload/file-upload.modul
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    DialogsModule,
     FileUploadModule
   ]
 })

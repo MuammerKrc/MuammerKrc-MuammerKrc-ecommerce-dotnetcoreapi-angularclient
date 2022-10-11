@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogActionEnum, DeleteDialogComponent } from '../dialogs/delete-dialog/delete-dialog.component';
 import { HttpClientBaseService } from '../services/baseHtpp/http-client-base.service';
 import { AlertifyOptions, AlertifyService, MessageType, Position } from '../services/common/alertify.service';
+import { DialogOptions, DialogParameters, DialogService } from '../services/common/dialog.service';
 declare var $: any;
 @Directive({
   selector: '[appDeleteDirective]'
@@ -14,8 +15,8 @@ export class DeleteDirective {
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private _httpClient: HttpClientBaseService,
-    public dialog: MatDialog,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private dilaogService:DialogService
   ) {
     const img: HTMLImageElement = renderer.createElement("img");
     img.setAttribute("src", "./assets/delete.png");
@@ -30,8 +31,17 @@ export class DeleteDirective {
 
   @HostListener("click")
   onClick() {
-    this.openDialog(() => {
+    this.dilaogService.openDialog(
+      {
+        afterClosed:()=>this.deleteAction(),
+        componentType:DeleteDialogComponent,
+        data:DeleteDialogActionEnum.Yes,
+        options:new DialogOptions
+      }
+    )
+  }
 
+  deleteAction(){
       var subs = this._httpClient.delete({
         controller: this.controller
       }, this.id).subscribe(i => {
@@ -47,19 +57,5 @@ export class DeleteDirective {
           position: Position.TopRight
         });
       });
-    })
-  }
-  
-  openDialog(callbackWhenClose: () => void): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '500px',
-      data: DeleteDialogActionEnum.Yes,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      if (DeleteDialogActionEnum.Yes == result)
-        callbackWhenClose();
-    });
   }
 }
