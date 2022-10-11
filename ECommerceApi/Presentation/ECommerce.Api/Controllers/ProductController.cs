@@ -54,5 +54,35 @@ namespace ECommerce.Api.Controllers
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Upload()
+        {
+            var data = Request.Form.Files;
+            if (data != null)
+                return Ok();
+            else
+                return BadRequest();
+            
+            //var result = await _storageService.UploadAsync("resource\\product-images", Request.Form.Files);
+
+            //if (result != null)
+            //{
+            //    result.ToList().ForEach(i =>
+            //    {
+            //        _fileWriteRepository.Add(new FileBase()
+            //        {
+            //            Title = "",
+            //            FileName = i.FileName,
+            //            Path = i.Path
+            //        });
+            //    });
+            //    await _fileWriteRepository.SaveAsync();
+            //    return Ok();
+            //}
+
+            return Problem();
+            //var result = await _fileService.UploadAsync("resource\\product-images", Request.Form.Files);
+
+        }
     }
 }

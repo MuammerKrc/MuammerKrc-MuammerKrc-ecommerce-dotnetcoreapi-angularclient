@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "fmtjdvQ0wx+9yfVq+qoCCCXn8gCGNA5Q5PKjlztxtiaxY5FhD0SZBdWRGE82/wdgXYbjbSx6V9+QuDW27AUtNg==",
+  "dgSpecHash": "PT3EkJ6etCnP6NpE+3+/4Eivo2Qi7TV1+XyL0tB0aHg3xTLS6uS57N5WSvVFodiXhHXbC5AWI3cUDZUgj1KxkA==",
   "success": true,
   "projectFilePath": "F:\\ownerProject\\ECommerce\\ECommerceApi\\Infrastructure\\ECommerce.SignalR\\ECommerce.SignalR.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.2\\fluentvalidation.dependencyinjectionextensions.11.2.2.nupkg.sha512",
+    "C:\\Users\\muamm\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\muamm\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\muamm\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.9\\microsoft.aspnetcore.cryptography.internal.6.0.9.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.9\\microsoft.aspnetcore.cryptography.keyderivation.6.0.9.nupkg.sha512",
     "C:\\Users\\muamm\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.9\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.9.nupkg.sha512",

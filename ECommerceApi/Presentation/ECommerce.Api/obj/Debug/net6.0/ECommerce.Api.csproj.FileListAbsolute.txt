@@ -77,3 +77,6 @@ F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\FluentValidation.dll
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\MediatR.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\MediatR.Contracts.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
