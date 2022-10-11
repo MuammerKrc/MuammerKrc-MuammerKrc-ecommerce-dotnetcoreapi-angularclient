@@ -1,7 +1,9 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
+import { FileDialogComponent, FileUploadDialogEnum } from 'src/app/dialogs/file-dialog/file-dialog.component';
 import { HttpClientBaseService } from '../baseHtpp/http-client-base.service';
 import { AlertifyOptions, AlertifyService, MessageType } from '../common/alertify.service';
 import { CustomToastrService, ToastrMessageType, ToastrOptions } from '../common/custom-toastr.service';
@@ -25,13 +27,29 @@ export class FileUploadComponent {
   constructor(
     private toastService: CustomToastrService,
     private alertifyService: AlertifyService,
-    private httpclient: HttpClientBaseService) { }
+    private httpclient: HttpClientBaseService,
+    public dialog: MatDialog,
+    ) { }
   public files: NgxFileDropEntry[] = [];
   @Input() fileOptions: Partial<FileUploadOptions>;
 
   selectedFiles(files: NgxFileDropEntry[]) {
     this.files = files;
-    this.upload();
+    this.openDialog(()=>{
+      this.upload()
+    });
+  }
+  openDialog(callbackWhenClose:Function){
+    const dialogRef = this.dialog.open(FileDialogComponent, {
+      width: '500px',
+      data: FileUploadDialogEnum.Yes,
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result==FileUploadDialogEnum.Yes)
+        callbackWhenClose();
+      else
+        this.files=[];
+    });
   }
 
   upload() {
@@ -59,34 +77,6 @@ export class FileUploadComponent {
 
     }
   }
-
-
-
-
-  public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    for (const droppedFile of files) {
-
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-
-
-
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry, "file değiş");
-      }
-    }
-  }
-
-
-
-
-
-
-
-
   public fileOver(event: any) {
     console.log(event);
   }
