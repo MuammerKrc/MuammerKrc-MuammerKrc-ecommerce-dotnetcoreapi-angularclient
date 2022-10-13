@@ -1,10 +1,18 @@
 using ECommerce.Application;
 using ECommerce.Application.Validators.Products;
+using ECommerce.Infrastructure;
 using ECommerce.Infrastructure.CustomControllerFilters;
+using ECommerce.Infrastructure.Enum;
 using ECommerce.Persistence;
 using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationServiceRegistration();
+builder.Services.AddPersistenceServiceRegistration();
+builder.Services.AddInfrastructureServices();
+
+builder.Services.AddStorage(StorageType.Local);
 
 // Add services to the container.
 
@@ -21,8 +29,7 @@ builder.Services.AddControllers(opt => opt.Filters.Add<CustomValidatorFilter>())
     {
         opt.SuppressModelStateInvalidFilter = true;
     });
-builder.Services.AddApplicationServiceRegistration();
-builder.Services.AddPersistenceServiceRegistration();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

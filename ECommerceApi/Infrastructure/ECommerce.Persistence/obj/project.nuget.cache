@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MikN5aNGHih532Eu+efBiykSC5vmMpbbXR24cIZ7Fsfal4xDxzmmq/spUVljcuxtqnvNSpBmtituhHe2x67T1Q==",
+  "dgSpecHash": "cb9/oPo19OilIfAjTOjk0Wqr9U+7Kf9bqECrXPHGSsB23KPKMtznQHibPGtesnA7+eM14KONpBMlzgnPplc8zQ==",
   "success": true,
   "projectFilePath": "F:\\ownerProject\\ECommerce\\ECommerceApi\\Infrastructure\\ECommerce.Persistence\\ECommerce.Persistence.csproj",
   "expectedPackageFiles": [

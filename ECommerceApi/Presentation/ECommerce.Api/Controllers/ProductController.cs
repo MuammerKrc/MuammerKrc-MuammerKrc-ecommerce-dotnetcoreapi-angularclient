@@ -1,7 +1,9 @@
 ﻿using ECommerce.Application.Abstractions;
 using ECommerce.Application.Dtos.ProductDtos;
+using ECommerce.Application.Features.Commands.ProductImageFileCommands.UploadProductImage;
 using ECommerce.Application.Repositories.IProductRepositories;
 using ECommerce.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +16,12 @@ namespace ECommerce.Api.Controllers
     {
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IProductReadRepository _productReadRepository;
-        public ProductController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
+        readonly IMediator _mediator;
+        public ProductController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IMediator mediator)
         {
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -54,35 +58,13 @@ namespace ECommerce.Api.Controllers
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
+
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload([FromQuery] UploadProductImageCommandRequest request)
         {
-            var data = Request.Form.Files;
-            if (data != null)
-                return Ok();
-            else
-                return BadRequest();
-            
-            //var result = await _storageService.UploadAsync("resource\\product-images", Request.Form.Files);
-
-            //if (result != null)
-            //{
-            //    result.ToList().ForEach(i =>
-            //    {
-            //        _fileWriteRepository.Add(new FileBase()
-            //        {
-            //            Title = "",
-            //            FileName = i.FileName,
-            //            Path = i.Path
-            //        });
-            //    });
-            //    await _fileWriteRepository.SaveAsync();
-            //    return Ok();
-            //}
-
-            return Problem();
-            //var result = await _fileService.UploadAsync("resource\\product-images", Request.Form.Files);
-
+            request.Files = Request.Form.Files;
+            UploadProductImageCommandResponse response = await _mediator.Send(request);
+            return Ok();
         }
     }
 }
