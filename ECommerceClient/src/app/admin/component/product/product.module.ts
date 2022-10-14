@@ -10,7 +10,7 @@ import { ListComponent } from './list/list.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from 'src/app/directives/delete.directive';
-import { DialogModule } from '@angular/cdk/dialog';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { DialogsModule } from 'src/app/dialogs/dialogs.module';
 import { FileUploadModule } from 'src/app/services/file-upload/file-upload.module';
 
@@ -30,6 +30,7 @@ import { FileUploadModule } from 'src/app/services/file-upload/file-upload.modul
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    DialogModule,
     FileUploadModule
   ]
 })

@@ -3,9 +3,11 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/baseComponents/base.component';
+import { SelectProductImageDialogComponent } from 'src/app/dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import { Product } from 'src/app/models/product';
 import { ProductList } from 'src/app/models/product-list';
 import { AlertifyService, MessageType } from 'src/app/services/common/alertify.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 import { ProductService } from 'src/app/services/httpServices/product.service';
 @Component({
   selector: 'app-list',
@@ -16,14 +18,16 @@ export class ListComponent extends BaseComponent implements OnInit {
   constructor(
     private productService:ProductService,
     ngxSpinner:NgxSpinnerService,
-    private alertify:AlertifyService){
+    private alertify:AlertifyService,
+    private dialogService:DialogService
+    ){
     super(ngxSpinner);
   }
   async ngOnInit(): Promise<void> {
     await this.getProducts();
   }
   productResponse :ProductList;
-  displayedColumns: string[] = ['name', 'stock', 'price','operaion'];
+  displayedColumns: string[] = ['name', 'stock', 'price','photo','update','delete'];
   dataSource:MatTableDataSource<Product>=null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   async getProducts(){
@@ -46,5 +50,11 @@ export class ListComponent extends BaseComponent implements OnInit {
   async pageChanged(){
     await this.getProducts();
   }
-  
+  openUpdeteImageDialog(productId:string){
+    this.dialogService.openDialog({
+      componentType:SelectProductImageDialogComponent,
+      data:productId
+    })
+    console.log(productId);
+  }
 }
