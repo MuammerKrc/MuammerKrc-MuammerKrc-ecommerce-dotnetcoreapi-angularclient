@@ -1,0 +1,47 @@
+<div class="row mt-5">
+  <form [formGroup]="form">
+    <div class="mb-3 col-md-5 col-lg-4 mx-auto">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" aria-describedby="name" formControlName="name">
+      <ng-container *ngIf="form.get('name').invalid">
+        <div *ngIf="form.get('name').touched&&form.get('name')?.errors['required']" class="form-text">This line needs to
+          be filled</div>
+        <div *ngIf="form.get('name').touched&&form.get('name')?.errors['minlength']" class="form-text">This line needs
+          to 3 character</div>
+      </ng-container>
+    </div>
+    <div class="mb-3 col-md-5 col-lg-4 mx-auto">
+      <label for="surname" class="form-label">Surname</label>
+      <input type="text" class="form-control" aria-describedby="surname" formControlName="surname">
+      <ng-container *ngIf="form.get('surname').invalid">
+        <div *ngIf="form.get('surname').touched&&form.get('surname')?.errors['required']" class="form-text">This line
+          needs to be filled</div>
+        <div *ngIf="form.get('surname').touched&&form.get('surname')?.errors['minlength']" class="form-text">This line
+          needs to 3 character</div>
+      </ng-container>
+    </div>
+    <div class="mb-3 col-md-5 col-lg-4 mx-auto">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+      <ng-container *ngIf="form.get('email').invalid">
+        <div *ngIf="form.get('email').touched&&form.get('email')?.errors['required']" class="form-text">This line needs
+          to be filled</div>
+        <div *ngIf="form.get('email').touched&&form.get('email')?.errors['email']" class="form-text">This line need to
+          be email format</div>
+      </ng-container>
+    </div>
+    <div class="mb-3 col-md-5 col-lg-4 mx-auto">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <ng-container *ngIf="form.get('password').invalid">
+        <div *ngIf="form.get('password').touched&&form.get('password')?.errors['required']" class="form-text">This line
+          needs to be filled</div>
+        <div *ngIf="form.get('password').touched&&form.get('password')?.errors['minlength']" class="form-text">This line
+          needs to 5 character</div>
+      </ng-container>
+    </div>
+    <div class="col-md-5 col-lg-4 mx-auto">
+      <button [disabled]="!form.valid" class="btn btn-primary" (click)="registerUser()">Register</button>
+    </div>
+  </form>
+</div>
