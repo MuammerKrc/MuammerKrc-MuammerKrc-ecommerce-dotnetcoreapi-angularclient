@@ -1,6 +1,9 @@
 ﻿using ECommerce.Application.Abstractions;
 using ECommerce.Application.Dtos.ProductDtos;
+using ECommerce.Application.Features.Commands.ProductCommands.CreateProduct;
+using ECommerce.Application.Features.Commands.ProductCommands.RemoveProduct;
 using ECommerce.Application.Features.Commands.ProductImageFileCommands.UploadProductImage;
+using ECommerce.Application.Features.Queries.ProductQueries.GetAllProduct;
 using ECommerce.Application.Repositories.IProductRepositories;
 using ECommerce.Domain.Entities;
 using MediatR;
@@ -14,48 +17,27 @@ namespace ECommerce.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductWriteRepository _productWriteRepository;
-        private readonly IProductReadRepository _productReadRepository;
         readonly IMediator _mediator;
-        public ProductController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IMediator mediator)
+        public ProductController(IMediator mediator)
         {
-            _productWriteRepository = productWriteRepository;
-            _productReadRepository = productReadRepository;
             _mediator = mediator;
         }
-
         [HttpGet]
-        public async Task<IActionResult> GetProduct(int page = 0, int size = 10)
+        public async Task<IActionResult> GetProduct([FromQuery] ProductGetAllQueryRequest request)
         {
-            var response = await _productReadRepository.GetWhere(i => true).Skip(page * size).Take(size).ToListAsync();
-            var totalCount = _productReadRepository.GetWhere(i => true).Count();
-            return Ok(new ProductPageListResultDto()
-            {
-                Result = response,
-                TotalCount = totalCount
-            });
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
-
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductCreateDto dto)
+        public async Task<IActionResult> CreateProduct([FromBody] ProductCreateCommandRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(dto);
-            _productWriteRepository.Add(new Product()
-            {
-                Name = dto.Name,
-                Price = dto.Price,
-                Stock = dto.Stock
-            });
-            await _productWriteRepository.SaveAsync();
-            return Ok();
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(Guid id)
+        public async Task<IActionResult> DeleteProduct([FromRoute] ProductRemoveCommandRequest request)
         {
-            var model = await _productReadRepository.GetByIdAsync(id, true);
-            _productWriteRepository.Remove(model);
-            await _productWriteRepository.SaveAsync();
+            var repsonse = await _mediator.Send(request);
             return Ok();
         }
 

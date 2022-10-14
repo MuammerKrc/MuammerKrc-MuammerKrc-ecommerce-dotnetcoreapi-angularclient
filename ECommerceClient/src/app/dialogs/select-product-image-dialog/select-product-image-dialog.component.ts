@@ -17,8 +17,7 @@ BaseDialog<SelectProductImageDialogComponent> {
   ) {
     super(dialogRef);
   }
-
-
+  
   @Output() options: Partial<FileUploadOptions> = {
     accept: ".png, .jpg, .jpeg, .gif",
     action: "upload",

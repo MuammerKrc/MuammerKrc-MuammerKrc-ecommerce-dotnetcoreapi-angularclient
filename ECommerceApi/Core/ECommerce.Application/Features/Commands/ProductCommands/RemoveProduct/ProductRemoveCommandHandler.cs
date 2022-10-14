@@ -21,7 +21,7 @@ namespace ECommerce.Application.Features.Commands.ProductCommands.RemoveProduct
 
         public async Task<ProductRemoveCommandResponse> Handle(ProductRemoveCommandRequest request, CancellationToken cancellationToken)
         {
-            var response=await _productReadRepository.GetByIdAsync(request.Id, true);
+            var response=await _productReadRepository.GetByIdAsync(request.id, true);
             _productWriteRepository.Remove(response);
             await _productWriteRepository.SaveAsync();
             return new();

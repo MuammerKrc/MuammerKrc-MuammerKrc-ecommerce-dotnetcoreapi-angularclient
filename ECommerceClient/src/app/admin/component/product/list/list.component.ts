@@ -42,7 +42,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     }
 
     );
-    this.dataSource=new MatTableDataSource<Product>(this.productResponse.result);
+    this.dataSource=new MatTableDataSource<Product>(this.productResponse.products);
     // this.dataSource.paginator=this.paginator;
     this.paginator.length=this.productResponse.totalCount;
   }
@@ -50,6 +50,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   async pageChanged(){
     await this.getProducts();
   }
+
   openUpdeteImageDialog(productId:string){
     this.dialogService.openDialog({
       componentType:SelectProductImageDialogComponent,
