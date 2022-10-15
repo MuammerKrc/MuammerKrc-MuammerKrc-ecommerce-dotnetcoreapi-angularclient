@@ -17,4 +17,9 @@ export class TokenStorageService {
   getRefreshToken():string{
     return localStorage.getItem("refreshToken");
   }
+  removeToken(){
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
+  }
 }

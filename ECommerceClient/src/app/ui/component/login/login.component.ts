@@ -1,9 +1,11 @@
+import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/baseComponents/base.component';
 import { UserLoginModel } from 'src/app/models/login-user';
+import { AuthService } from 'src/app/services/common/auth.service';
 import { UserAuthService } from 'src/app/services/httpServices/user-auth.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { UserAuthService } from 'src/app/services/httpServices/user-auth.service
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  constructor(private loginSerive: UserAuthService, spinner: NgxSpinnerService, private activetedRoute: ActivatedRoute, private router: Router) {
+  constructor(private loginSerive: UserAuthService, spinner: NgxSpinnerService, private activetedRoute: ActivatedRoute, private router: Router,private authenticationService:AuthService) {
     super(spinner);
   }
   ngOnInit(): void {
@@ -33,7 +35,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
         const returnUrl: string = params["returnUrl"];
         if (returnUrl)
           this.router.navigate([returnUrl]);
+        else
+          this.router.navigateByUrl("");
       });
     });
+    this.authenticationService.authenticatedCheck();
   }
 }
