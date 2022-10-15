@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerce.Application.Abstractions.Services;
+using ECommerce.Infrastructure.Services;
 
 namespace ECommerce.Infrastructure
 {
@@ -17,6 +19,7 @@ namespace ECommerce.Infrastructure
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IStorageService, StorageService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
         public static void AddStorage<T>(this IServiceCollection services) where T : Storage, IStorage
         {

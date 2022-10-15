@@ -49,9 +49,12 @@ namespace ECommerce.Persistence.Services
             
         }
 
-        public Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
+        public async Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime refreshExpirationDate)
         {
-            throw new NotImplementedException();
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenEndDate = refreshExpirationDate;
+            await _userManager.UpdateAsync(user);
+
         }
 
         public Task UpdatePasswordAsync(string userId, string resetToken, string newPassword)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECommerce.Application.Abstractions;
 using ECommerce.Application.Abstractions.Services;
+using ECommerce.Application.Abstractions.Services.IAuthServices;
 using ECommerce.Application.Repositories;
 using ECommerce.Application.Repositories.IProductImageFileRepositories;
 using ECommerce.Application.Repositories.IProductRepositories;
@@ -56,6 +57,8 @@ namespace ECommerce.Persistence
 
             //service
             service.AddScoped<IUserService, UserService>();
+            service.AddScoped<IAuthService, AuthService>();
+
         }
     }
 }
