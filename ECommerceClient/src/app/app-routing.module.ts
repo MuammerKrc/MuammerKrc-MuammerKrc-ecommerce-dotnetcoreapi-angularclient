@@ -12,8 +12,8 @@ const routes: Routes = [
   ]},
   {path:"",component:HomeComponent},
   {path:"products",loadChildren:()=>import('./ui/component/products/products.module').then(module=>module.ProductsModule)},
-  {path:"register",loadChildren:()=>import('./ui/component/register/register.module').then(modele=>modele.RegisterModule)}
-
+  {path:"register",loadChildren:()=>import('./ui/component/register/register.module').then(modele=>modele.RegisterModule)},
+  {path:"login",loadChildren:()=>import('./ui/component/login/login.module').then(modele=>modele.LoginModule)},
 ];
 
 @NgModule({
