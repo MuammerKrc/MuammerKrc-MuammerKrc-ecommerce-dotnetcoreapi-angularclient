@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECommerce.Application.Abstractions;
+using ECommerce.Application.Abstractions.Services;
 using ECommerce.Application.Repositories;
 using ECommerce.Application.Repositories.IProductImageFileRepositories;
 using ECommerce.Application.Repositories.IProductRepositories;
 using ECommerce.Domain.Entities.Identity;
-using ECommerce.Persistence.Concretes;
 using ECommerce.Persistence.Contexts;
 using ECommerce.Persistence.Repositories;
 using ECommerce.Persistence.Repositories.ProductImageFileRepositories;
 using ECommerce.Persistence.Repositories.ProductRepositories;
+using ECommerce.Persistence.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,16 +46,16 @@ namespace ECommerce.Persistence
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
+            //repositories
             service.AddScoped(typeof(IReadRepository<,>), typeof(ReadRepository<,>));
             service.AddScoped(typeof(IWriteRepository<,>), typeof(WriteRepository<,>));
-
             service.AddScoped<IProductReadRepository, ProductReadRepository>();
             service.AddScoped<IProductWriteRepository, ProductWriteRepository>();
-
             service.AddScoped<IProductImageFileReadRepository, ProductImageFileReadRepository>();
             service.AddScoped<IProductImageFileWriteRepository, ProductImageFileWriteRepository>();
 
-            service.AddScoped<IProductService, ProductService>();
+            //service
+            service.AddScoped<IUserService, UserService>();
         }
     }
 }
