@@ -39,6 +39,7 @@ import { HttpErrorInterceptorService } from './services/interceptors/http-error-
   ],
   providers: [
     { provide: "baseUrl", useValue: "https://localhost:7045/api", multi: true },
+    {provide:"baseSignalRUrl",useValue:"https://localhost:7045/",multi:true},
     {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptorService,multi:true},
   {
     provide: "SocialAuthServiceConfig",
