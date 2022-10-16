@@ -17,13 +17,27 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(catchError((err) => {
       switch (err.status) {
         case HttpStatusCode.Unauthorized:
-          this.toastrService.message("Yetkisiz giriş!", "Sunucu hatası!", {
-            messageType: ToastrMessageType.Warning,
-            position: ToastrPosition.BottomFullWidth
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
+            debugger;
+            if (!state) {
+              const url = this.router.url;
+              if (url == "/products")
+                this.toastrService.message("Sepete ürün eklemek için oturum açmanız gerekiyor.", "Oturum açınız!", {
+                  messageType: ToastrMessageType.Warning,
+                  position: ToastrPosition.TopRight
+                });
+              else
+                this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
+                  messageType: ToastrMessageType.Warning,
+                  position: ToastrPosition.BottomFullWidth
+                });
+            }
+          }).then(data => {
+
           });
           break;
         case HttpStatusCode.InternalServerError:
-          this.toastrService.message("Yetkisiz giriş!", "Sunucu hatası!", {
+          this.toastrService.message("Sunucu tarafında bir hata meydana geldi !", "Sunucu hatası!", {
             messageType: ToastrMessageType.Warning,
             position: ToastrPosition.BottomFullWidth
           });
