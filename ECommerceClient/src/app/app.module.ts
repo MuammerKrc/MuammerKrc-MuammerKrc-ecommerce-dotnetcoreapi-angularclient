@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt'
 import { LoginComponent } from './ui/component/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { HttpErrorInterceptorService } from './services/interceptors/http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
       }
     })
   ],
-  providers: [{ provide: "baseUrl", useValue: "https://localhost:7045/api", multi: true },
+  providers: [
+    { provide: "baseUrl", useValue: "https://localhost:7045/api", multi: true },
+    {provide:HTTP_INTERCEPTORS,useClass:HttpErrorInterceptorService,multi:true},
   {
     provide: "SocialAuthServiceConfig",
     useValue: {
@@ -50,6 +53,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
       onError: err => console.log(err)
     } as SocialAuthServiceConfig
   },],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
