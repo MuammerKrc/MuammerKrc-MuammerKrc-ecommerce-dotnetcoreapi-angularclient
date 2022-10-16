@@ -8,6 +8,7 @@ using ECommerce.Infrastructure;
 using ECommerce.Infrastructure.CustomControllerFilters;
 using ECommerce.Infrastructure.Enum;
 using ECommerce.Persistence;
+using ECommerce.SignalR;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
@@ -21,6 +22,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplicationServiceRegistration(builder.Configuration);
 builder.Services.AddPersistenceServiceRegistration();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddSignalRServiceRegistration();
+
 
 builder.Services.AddStorage(StorageType.Local);
 
@@ -30,8 +33,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("AngularClientCors", cfg =>
     {
-        cfg.WithOrigins("https://localhost:4200", "http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
-            .AllowCredentials();
+        cfg.WithOrigins("https://localhost:4200", "http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     });
 });
 Logger log = new LoggerConfiguration()
@@ -109,5 +111,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<SerilogUsernameMiddleware>();
 app.MapControllers();
-
+app.MapHubs();
 app.Run();
