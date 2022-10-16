@@ -17,7 +17,6 @@ import { LoginModule } from './login/login.module';
     HomeModule,
     ProductModule,
     RegisterModule,
-    LoginModule
   ]
 
 })

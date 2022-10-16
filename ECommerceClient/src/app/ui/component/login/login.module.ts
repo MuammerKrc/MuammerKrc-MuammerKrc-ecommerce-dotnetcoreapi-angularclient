@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    LoginComponent
   ],
   imports: [
     CommonModule,

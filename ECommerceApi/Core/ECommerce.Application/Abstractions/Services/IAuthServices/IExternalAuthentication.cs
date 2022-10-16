@@ -9,7 +9,7 @@ namespace ECommerce.Application.Abstractions.Services.AuthServices
 {
     public interface IExternalAuthentication
     {
-        Task<Token> FacebookLoginAsync(string authToken, int accessTokenLifeTime);
-        Task<Token> GoogleLoginAsync(string idToken, int accessTokenLifeTime);
+        Task<Token> FacebookLoginAsync(string authToken);
+        Task<Token> GoogleLoginAsync(string idToken);
     }
 }

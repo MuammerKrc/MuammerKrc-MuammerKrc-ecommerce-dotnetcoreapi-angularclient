@@ -82,3 +82,8 @@ F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\ECommerce.Api.staticwebassets.runtime.json
 F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Google.Apis.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Google.Apis.Auth.PlatformServices.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Google.Apis.Auth.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Google.Apis.Core.dll
+F:\ownerProject\ECommerce\ECommerceApi\Presentation\ECommerce.Api\bin\Debug\net6.0\Newtonsoft.Json.dll

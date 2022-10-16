@@ -19,6 +19,8 @@ namespace ECommerce.Application
 
             //Configuration
             services.Configure<TokenConfigurationModel>(configuration.GetSection("Token"));
+            services.Configure<ExternalLoginConfigurationModel>(configuration.GetSection("ExternalLoginSettings"));
+
         }
     }
 }

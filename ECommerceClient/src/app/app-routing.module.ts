@@ -4,6 +4,7 @@ import { DashboardComponent } from './admin/component/dashboard/dashboard.compon
 import { LayoutComponent } from './admin/layout/layout.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './ui/component/home/home.component';
+import { LoginComponent } from './ui/component/login/login.component';
 
 const routes: Routes = [
   {path:"admin",component:LayoutComponent,children:[
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"products",loadChildren:()=>import('./ui/component/products/products.module').then(module=>module.ProductsModule)},
   {path:"register",loadChildren:()=>import('./ui/component/register/register.module').then(modele=>modele.RegisterModule)},
-  {path:"login",loadChildren:()=>import('./ui/component/login/login.module').then(modele=>modele.LoginModule)},
+  {path:"login",component:LoginComponent},
 ];
 
 @NgModule({

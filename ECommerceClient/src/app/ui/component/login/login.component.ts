@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -14,8 +15,27 @@ import { UserAuthService } from 'src/app/services/httpServices/user-auth.service
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  constructor(private loginSerive: UserAuthService, spinner: NgxSpinnerService, private activetedRoute: ActivatedRoute, private router: Router,private authenticationService:AuthService) {
+  constructor(
+    private loginSerive: UserAuthService,
+    spinner: NgxSpinnerService,
+    private activetedRoute: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthService,
+    private socialAuthService:SocialAuthService
+  ) {
     super(spinner);
+    this.socialAuthService.authState.subscribe(async (user:SocialUser)=>{
+      console.log(user)
+      this.showSpinner(SpinnerType.BallAtom);
+      switch (user.provider) {
+        case "GOOGLE":
+          await loginSerive.googleLogin(user, () => {
+            this.authenticationService.authenticatedCheck();
+            this.hideSpinner(SpinnerType.BallAtom);
+          })
+          break;
+      }
+    });
   }
   ngOnInit(): void {
   }

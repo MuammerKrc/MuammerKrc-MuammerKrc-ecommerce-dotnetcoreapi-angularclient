@@ -9,10 +9,13 @@ using ECommerce.Application.ConfigurationModels;
 using ECommerce.Application.Dtos;
 using ECommerce.Application.Exceptions;
 using ECommerce.Domain.Entities.Identity;
+using Google.Apis.Auth;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.VisualBasic;
 
 namespace ECommerce.Persistence.Services
 {
@@ -24,8 +27,9 @@ namespace ECommerce.Persistence.Services
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
         private TokenConfigurationModel tokenConfigurationModel;
+        private ExternalLoginConfigurationModel tokenExternalLoginConfigurationModel;
 
-        public AuthService(IOptions<TokenConfigurationModel> tokenOptions, IConfiguration configuration, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IUserService userService, ITokenService tokenService)
+        public AuthService(IOptions<TokenConfigurationModel> tokenOptions, IOptions<ExternalLoginConfigurationModel> externalOptions, IConfiguration configuration, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IUserService userService, ITokenService tokenService)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -33,18 +37,60 @@ namespace ECommerce.Persistence.Services
             _userService = userService;
             _tokenService = tokenService;
             tokenConfigurationModel = tokenOptions.Value;
+            tokenExternalLoginConfigurationModel = externalOptions.Value;
         }
 
-        public Task<Token> FacebookLoginAsync(string authToken, int accessTokenLifeTime)
+        public Task<Token> FacebookLoginAsync(string authToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Token> GoogleLoginAsync(string idToken, int accessTokenLifeTime)
+        public async Task<Token> GoogleLoginAsync(string idToken)
         {
-            throw new NotImplementedException();
+            var settings = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string> { tokenExternalLoginConfigurationModel.Google.Client_ID }
+            };
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
+
+            var info = new UserLoginInfo("GOOGLE", payload.Subject, "GOOGLE");
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+            return await CreateUserExternalAsync(user, payload.Email, payload.Name ?? "", info, payload);
         }
 
+        private async Task<Token> CreateUserExternalAsync(AppUser user, string email, string name, UserLoginInfo info, GoogleJsonWebSignature.Payload payload)
+        {
+            bool result = user != null;
+            if (user == null)
+            {
+                user = await _userManager.FindByEmailAsync(email);
+                result = user != null;
+                if (user == null)
+                {
+                    user = new()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Email = email,
+                        UserName = Guid.NewGuid().ToString(),
+                        NameSurname = payload?.Name ?? "" + " " + payload?.FamilyName ?? "",
+                        Name = payload?.Name ?? "",
+                        Surname = payload?.FamilyName ?? ""
+                    };
+                    var identityResult = await _userManager.CreateAsync(user);
+                    result = identityResult.Succeeded;
+                }
+            }
+            if (result)
+            {
+                await _userManager.AddLoginAsync(user, info);
+                Token token = _tokenService.CreateAccessToken(user);
+                await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user,
+                    token.Expiration.AddMinutes(tokenConfigurationModel.RefreshTokenExpirationTime));
+                return token;
+            }
+            throw new Exception("Invalid external authentication.");
+        }
         public async Task<Token> LoginAsync(string usernameOrEmail, string password)
         {
             AppUser user = await _userManager.FindByEmailAsync(usernameOrEmail);
