@@ -112,7 +112,7 @@ namespace ECommerce.Persistence.Services
         public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(e => e.RefreshToken == refreshToken && e.RefreshTokenEndDate > DateTime.UtcNow);
-            if (user != null)
+            if (user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
             {
                 Token token = _tokenService.CreateAccessToken(user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user,

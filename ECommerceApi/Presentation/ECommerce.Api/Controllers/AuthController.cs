@@ -1,5 +1,6 @@
 ﻿using ECommerce.Application.Features.Commands.AppUserCommands.GoogleLogin;
 using ECommerce.Application.Features.Commands.AppUserCommands.LoginUser;
+using ECommerce.Application.Features.Commands.AppUserCommands.LoginWithRefreshToken;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,13 @@ namespace ECommerce.Api.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> GoogleLogin(GoogleLoginCommandRequest request)
+        {
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LoginWithRefreshToken(LoginWithRefreshTokenCommandRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
