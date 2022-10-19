@@ -60,13 +60,13 @@ namespace ECommerce.Persistence.Services
             };
         }
 
-        public async Task<SingleOrder> GetOrderByIdAsync(string id)
+        public async Task<SingleOrder> GetOrderByIdAsync(Guid id)
         {
             var data = await _orderReadRepository._entity
                                  .Include(o => o.Basket)
                                      .ThenInclude(b => b.BasketItems)
                                          .ThenInclude(bi => bi.Product)
-                                                 .FirstOrDefaultAsync(o => o.Id == Guid.Parse(id));
+                                                 .FirstOrDefaultAsync(o => o.Id == id);
 
             return new()
             {

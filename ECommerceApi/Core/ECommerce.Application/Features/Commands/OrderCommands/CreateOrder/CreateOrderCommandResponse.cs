@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.OrderCommands.CreateOrder
 {
-    internal class CreateOrderCommandResponse
+    public class CreateOrderCommandResponse
     {
+
     }
 }

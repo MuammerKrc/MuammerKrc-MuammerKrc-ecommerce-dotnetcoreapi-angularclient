@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Queries.OrderQueries.GetAllOrder
 {
-    internal class GetAllOrderQueryResponse
+    public class GetAllOrderQueryResponse
     {
+        public int TotalOrderCount { get; set; }
+        public object Orders { get; set; }
     }
 }
