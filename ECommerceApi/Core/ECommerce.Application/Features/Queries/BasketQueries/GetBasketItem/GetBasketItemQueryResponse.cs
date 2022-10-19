@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Queries.BasketQueries.GetBasketItem
 {
-    internal class GetBasketItemQueryResponse
+    public class GetBasketItemQueryResponse
     {
+        public string BasketItemId { get; set; }
+        public string Name { get; set; }
+        public float Price { get; set; }
+        public int Quantity { get; set; }
     }
 }

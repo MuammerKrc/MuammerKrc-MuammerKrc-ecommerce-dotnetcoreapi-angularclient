@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.BasketCommands.AddBasketItem
 {
-    internal class AddBasketItemCommandResponse
+    public class AddBasketItemCommandResponse
     {
     }
 }

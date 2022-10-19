@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.BasketCommands.RemoveBasketItem
 {
-    internal class RemoveBasketItemCommandResponse
+    public class RemoveBasketItemCommandResponse
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.BasketCommands.UpdateQuantity
 {
-    internal class UpdateQuantityCommandResponse
+    public class UpdateQuantityCommandResponse
     {
     }
 }
