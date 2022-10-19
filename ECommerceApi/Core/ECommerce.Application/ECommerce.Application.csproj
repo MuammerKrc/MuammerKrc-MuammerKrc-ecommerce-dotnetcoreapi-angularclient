@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Commands\BasketCommands\UpdateQuantity\" />
+    <Folder Include="Features\Commands\OrderCommands\" />
     <Folder Include="Features\Queries\ProductQueries\ProductImageFile\" />
   </ItemGroup>
 

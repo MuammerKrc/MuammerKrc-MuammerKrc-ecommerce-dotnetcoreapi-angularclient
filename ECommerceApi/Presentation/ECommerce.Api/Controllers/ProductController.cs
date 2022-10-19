@@ -16,7 +16,6 @@ namespace ECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "admin")]
     public class ProductController : ControllerBase
     {
         readonly IMediator _mediator;
@@ -30,13 +29,18 @@ namespace ECommerce.Api.Controllers
             var response = await _mediator.Send(request);
             return Ok(response);
         }
+
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "admin")]
+
         public async Task<IActionResult> CreateProduct([FromBody] ProductCreateCommandRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = "admin")]
+
         public async Task<IActionResult> DeleteProduct([FromRoute] ProductRemoveCommandRequest request)
         {
             var repsonse = await _mediator.Send(request);
@@ -44,6 +48,8 @@ namespace ECommerce.Api.Controllers
         }
 
         [HttpPost("[action]")]
+        [Authorize(AuthenticationSchemes = "admin")]
+
         public async Task<IActionResult> Upload([FromQuery] UploadProductImageCommandRequest request)
         {
             request.Files = Request.Form.Files;
