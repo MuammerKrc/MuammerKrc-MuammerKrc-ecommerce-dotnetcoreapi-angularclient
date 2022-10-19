@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\BasketCommands\UpdateQuantity\" />
-    <Folder Include="Features\Commands\OrderCommands\" />
     <Folder Include="Features\Queries\ProductQueries\ProductImageFile\" />
   </ItemGroup>
 

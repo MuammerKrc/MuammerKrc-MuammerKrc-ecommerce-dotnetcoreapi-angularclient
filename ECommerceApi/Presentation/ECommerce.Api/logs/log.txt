@@ -20109,3 +20109,62 @@ Content-Type: application/json; charset=utf-8
 2022-10-19 11:45:21.762 +03:00 [INF] Executed endpoint 'ECommerce.Api.Controllers.ProductController.GetProduct (ECommerce.Api)'
 2022-10-19 11:45:21.763 +03:00 [INF] ResponseBody: {"totalProductCount":9,"products":[{"name":"Product 3","stock":20,"price":200,"orders":[],"productImageFiles":[],"id":"548fa6e2-5331-4a7a-934d-08daa93c619f","creationDate":"2022-10-08T17:50:02.8156375","updateDate":null},{"name":"Product 4","stock":25,"price":150,"orders":[],"productImageFiles":[],"id":"f29de1ce-c681-4aa3-934e-08daa93c619f","creationDate":"2022-10-08T17:50:02.8156376","updateDate":null},{"name":"Sushi","stock":24,"price":24,"orders":[],"productImageFiles":[],"id":"9d857291-e6c4-4be6-287a-08daafb14728","creationDate":"2022-10-16T23:01:56.4412254","updateDate":null}]}
 2022-10-19 11:45:21.764 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7045/api/product?page=0&&size=3 - - - 200 - application/json;+charset=utf-8 19.1576ms
+2022-10-19 15:00:13.187 +03:00 [INF] Entity Framework Core 6.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=ECommerce.Persistence 
+2022-10-19 15:00:24.125 +03:00 [INF] Entity Framework Core 6.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=ECommerce.Persistence 
+2022-10-19 15:00:24.378 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-19 15:00:24.405 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-10-19 15:00:24.409 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-19 15:00:24.411 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-10-19 15:00:24.429 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-10-19 15:00:24.440 +03:00 [INF] Applying migration '20221019120013_added_basket'.
+2022-10-19 15:00:24.811 +03:00 [INF] Executed DbCommand (318ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE [OrderProduct];
+2022-10-19 15:00:24.905 +03:00 [INF] Executed DbCommand (94ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Order]') AND [c].[name] = N'OrderCode');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Order] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Order] ALTER COLUMN [OrderCode] nvarchar(450) NOT NULL;
+2022-10-19 15:00:24.919 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Baskets] (
+    [Id] uniqueidentifier NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    [CreationDate] datetime2 NULL,
+    [UpdateDate] datetime2 NULL,
+    CONSTRAINT [PK_Baskets] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Baskets_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2022-10-19 15:00:24.925 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [BasketItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [BasketId] uniqueidentifier NOT NULL,
+    [ProductId] uniqueidentifier NOT NULL,
+    [Quantity] int NOT NULL,
+    [CreationDate] datetime2 NULL,
+    [UpdateDate] datetime2 NULL,
+    CONSTRAINT [PK_BasketItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_BasketItems_Baskets_BasketId] FOREIGN KEY ([BasketId]) REFERENCES [Baskets] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_BasketItems_Products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [Products] ([Id]) ON DELETE CASCADE
+);
+2022-10-19 15:00:24.930 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Order_OrderCode] ON [Order] ([OrderCode]);
+2022-10-19 15:00:24.932 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_BasketItems_BasketId] ON [BasketItems] ([BasketId]);
+2022-10-19 15:00:24.934 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_BasketItems_ProductId] ON [BasketItems] ([ProductId]);
+2022-10-19 15:00:24.936 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Baskets_UserId] ON [Baskets] ([UserId]);
+2022-10-19 15:00:24.939 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Order] ADD CONSTRAINT [FK_Order_Baskets_Id] FOREIGN KEY ([Id]) REFERENCES [Baskets] ([Id]) ON DELETE CASCADE;
+2022-10-19 15:00:24.945 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20221019120013_added_basket', N'6.0.9');

@@ -7,7 +7,7 @@ using ECommerce.Domain.Entities;
 
 namespace ECommerce.Application.Repositories.IBasketItemRepositories
 {
-    public interface IBasketItemReadRepository : IReadRepository<Basket, Guid>
+    public interface IBasketItemReadRepository : IReadRepository<BasketItem, Guid>
     {
 
     }
