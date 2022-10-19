@@ -8,7 +8,7 @@ namespace ECommerce.Application.Dtos.BasketDtos
 {
     public class UpdateBasketItem
     {
-        public string BasketItemId { get; set; }
+        public Guid BasketItemId { get; set; }
         public int Quantity { get; set; }
     }
 }
