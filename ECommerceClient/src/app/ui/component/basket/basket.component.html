@@ -15,19 +15,21 @@
               <th scope="col">Name</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-            <td> <input type="number" value="11" style="width: 80px;"></td>
-            </tr>
+            <tr *ngFor="let item of repsonse; let i =index" #remove>
 
+              <th scope="row">{{i+1}}</th>
+              <td>{{item.name}}</td>
+              <td>{{item.price}}</td>
+              <!-- <td> <input type="number" value="{{item.quantity}}" style="width: 80px;"></td> -->
+              <td> <input type="number" [value]="item.quantity" style="width: 80px;" (change)="changeQuantity($event,item)"></td>
+              <td><button type="button" class="btn btn-danger" (click)="removeItem($event,remove,item.basketItemId)">X</button></td>
+            </tr>
           </tbody>
         </table>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

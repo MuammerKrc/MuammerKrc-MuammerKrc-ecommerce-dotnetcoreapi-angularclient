@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/baseComponents/base.component';
+import { Create_Basket_Item } from 'src/app/models/basket/create_basket_item';
 import { Product } from 'src/app/models/product';
 import { ProductList } from 'src/app/models/product-list';
 import { AlertifyService } from 'src/app/services/common/alertify.service';
-import { CustomToastrService, ToastrMessageType } from 'src/app/services/common/custom-toastr.service';
+import { CustomToastrService, ToastrMessageType, ToastrOptions } from 'src/app/services/common/custom-toastr.service';
+import { BasketService } from 'src/app/services/httpServices/basket.service';
 import { ProductService } from 'src/app/services/httpServices/product.service';
 
 @Component({
@@ -15,7 +17,7 @@ import { ProductService } from 'src/app/services/httpServices/product.service';
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(private productService: ProductService, private ngxSpinner: NgxSpinnerService, private toastService: CustomToastrService, private activatedRoute: ActivatedRoute) {
+  constructor(private productService: ProductService, private ngxSpinner: NgxSpinnerService, private toastService: CustomToastrService, private activatedRoute: ActivatedRoute,private basketService:BasketService) {
     super(ngxSpinner);
   }
   async ngOnInit(): Promise<void> {
@@ -60,6 +62,16 @@ export class ListComponent extends BaseComponent implements OnInit {
         this.pageList.push(i);
       }
     }
+  }
+
+  async addToBasket(id:string){
+    this.showSpinner(SpinnerType.BallAtom);
+    let _basketItem: Create_Basket_Item = new Create_Basket_Item();
+    _basketItem.productId = id;
+    _basketItem.quantity = 1;
+    await this.basketService.add(_basketItem);
+    this.hideSpinner(SpinnerType.BallAtom);
+    this.toastService.message("Ürün sepete eklenmiştir","Bildirim",new ToastrOptions)
   }
 }
 

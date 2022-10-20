@@ -13,7 +13,7 @@
           <p class="card-text">
             stock= {{item.stock}}
           </p>
-          <a href="#" class="btn btn-primary">Add Basket</a>
+          <a (click)="addToBasket(item.id)" class="btn btn-primary">Add Basket</a>
         </div>
       </div>
     </div>
