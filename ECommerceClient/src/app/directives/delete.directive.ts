@@ -25,6 +25,7 @@ export class DeleteDirective {
     img.height = 25;
     renderer.appendChild(elementRef.nativeElement, img);
   }
+  
   @Input() id: string;
   @Input() controller: string;
   @Output() deleteCallback: EventEmitter<any> = new EventEmitter();

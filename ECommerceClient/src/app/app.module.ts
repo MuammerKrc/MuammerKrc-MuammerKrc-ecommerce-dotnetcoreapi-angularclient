@@ -13,11 +13,13 @@ import { LoginComponent } from './ui/component/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { HttpErrorInterceptorService } from './services/interceptors/http-error-interceptor.service';
+import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DynamicComponentDirective
   ],
   imports: [
     BrowserModule,

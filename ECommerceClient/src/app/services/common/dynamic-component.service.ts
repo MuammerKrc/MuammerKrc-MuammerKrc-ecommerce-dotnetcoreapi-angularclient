@@ -6,7 +6,7 @@ import { Component, ComponentFactoryResolver, Injectable, ViewContainerRef } fro
 })
 export class DynamicComponentService {
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor() { }
 
   async loadComponent(component:LoadComponentType,viewContainerRef:ViewContainerRef) {
     let _component:any=null
@@ -14,11 +14,11 @@ export class DynamicComponentService {
     switch(component)
     {
       case LoadComponentType.Basket:
-        _component=await import('../../ui/component/basket/basket.component');
+        _component=await (await (import('../../ui/component/basket/basket.component'))).BasketComponent;
         break;
     }
     viewContainerRef.clear();
-    viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory(_component));
+    viewContainerRef.createComponent(_component);
   }
 }
 
