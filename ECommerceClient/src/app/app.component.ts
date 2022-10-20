@@ -24,4 +24,10 @@ export class AppComponent {
       messageType:ToastrMessageType.Warning
     });
   }
+  openModal(){
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  }
+
 }

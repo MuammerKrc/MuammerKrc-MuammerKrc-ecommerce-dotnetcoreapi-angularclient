@@ -6,6 +6,7 @@ import { ProductModule } from 'src/app/admin/component/product/product.module';
 import { RegisterComponent } from './register/register.component';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
+import { BasketModule } from './basket/basket.module';
 
 
 
@@ -17,6 +18,10 @@ import { LoginModule } from './login/login.module';
     HomeModule,
     ProductModule,
     RegisterModule,
+    BasketModule
+  ],
+  exports:[
+    BasketModule
   ]
 
 })
